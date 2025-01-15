@@ -1,0 +1,41 @@
+.form {
+	border-width: 1px;
+	border-color: gray;
+	border-style: solid;
+	width: 400px;
+	padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 28px;
+    padding-bottom: 20px;
+    border-radius: 4px;
+}
+
+.form-element {
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
+.mt-0{
+    margin-top: 0px;
+}
+
+input{
+    width: 400px;
+    margin-top: 6px;
+}
+
+textarea{
+    width: 400px;
+    margin-top: 6px;
+}
+
+.btn-send{
+    color: white;
+    border: none;
+    background: green;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 4px;
+}

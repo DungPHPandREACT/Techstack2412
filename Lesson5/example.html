@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.navbar {
+				background: #333333;
+				color: white;
+				padding: 8px 12px;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.navbar-pages {
+				display: flex;
+			}
+
+			.navbar-page {
+				padding: 8px 12px;
+			}
+
+			.page-content p {
+				padding: 20px 12px;
+			}
+
+			@media (max-width: 768px) {
+				.navbar-pages {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page-content">
+			<div class="navbar">
+				<h2>Logo</h2>
+				<div class="navbar-pages">
+					<div class="navbar-page">Home</div>
+					<div class="navbar-page">About</div>
+					<div class="navbar-page">Services</div>
+					<div class="navbar-page">Contact</div>
+				</div>
+			</div>
+			<p>
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae
+				odio iure asperiores illo deserunt quaerat est? Suscipit similique vitae
+				vero! Non mollitia numquam totam esse asperiores in id neque inventore.
+			</p>
+		</div>
+	</body>
+</html>
