@@ -54,7 +54,7 @@
 						</div>
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label"
-								>Tên kho hàng</label
+								>Tên kho hàng <span style="color: red">*</span></label
 							>
 							<input
 								type="email"
@@ -62,10 +62,14 @@
 								id="input_name_storage"
 								placeholder="Nhập tên kho hàng"
 							/>
+							<span
+								id="error_name_storage"
+								style="color: red; font-size: 12px"
+							></span>
 						</div>
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label"
-								>Địa chỉ</label
+								>Địa chỉ<span style="color: red">*</span></label
 							>
 							<input
 								type="email"
@@ -73,10 +77,14 @@
 								id="input_address_storage"
 								placeholder="Nhập địa chỉ kho hàng"
 							/>
+                            <span
+								id="error_address_storage"
+								style="color: red; font-size: 12px"
+							></span>
 						</div>
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label"
-								>Người sở hữu</label
+								>Người sở hữu<span style="color: red">*</span></label
 							>
 							<input
 								type="email"
@@ -84,6 +92,10 @@
 								id="input_owner_storage"
 								placeholder="Nhập người sở hữu"
 							/>
+							<span
+								id="error_owner_storage"
+								style="color: red; font-size: 12px"
+							></span>
 						</div>
 					</div>
 					<div class="modal-footer">

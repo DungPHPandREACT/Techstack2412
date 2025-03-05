@@ -69,13 +69,33 @@ btnUpdateStorage.onclick = function () {
 	const newOwnerStorage = inputOwnerStorage.value;
 	const newDescriptionStorage = inputDescriptionStorage.value;
 
-	storage.name = newNameStorage;
-	storage.address = newAddressStorage;
-	storage.owner = newOwnerStorage;
-	storage.description = newDescriptionStorage;
+	// Kiểm tra xem thông tin đã có chưa
+	if (
+		newNameStorage.length < 1 ||
+		newAddressStorage.length < 1 ||
+		newOwnerStorage.length < 1
+	) {
+		if (newNameStorage.length < 1) {
+			document.getElementById('error_name_storage').innerText =
+				'Tên kho hàng là bắt buộc.';
+		}
+		if (newAddressStorage.length < 1) {
+			document.getElementById('error_address_storage').innerText =
+				'Địa chỉ kho hàng là bắt buộc.';
+		}
+		if (newOwnerStorage.length < 1) {
+			document.getElementById('error_owner_storage').innerText =
+				'Tên người sở hữu là bắt buộc.';
+		}
+	} else {
+		storage.name = newNameStorage;
+		storage.address = newAddressStorage;
+		storage.owner = newOwnerStorage;
+		storage.description = newDescriptionStorage;
 
-	printInformationStorage();
-	myModal.hide();
+		printInformationStorage();
+		myModal.hide();
+	}
 };
 
 // Tạo mặt hàng trong kho → Yêu cầu nhập mã mặt hàng, tên, loại, giá cả. In ra thông tin các mặt hàng đang có trong kho. Nếu mã mặt hàng đã tồn tại → yêu cầu nhập lại.
