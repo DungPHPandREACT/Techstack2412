@@ -18,6 +18,83 @@
 		</style>
 	</head>
 	<body>
+		<div
+			class="modal fade"
+			id="staticBackdrop"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="staticBackdropLabel">
+							Cập nhật thông tin kho hàng
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="exampleFormControlTextarea1" class="form-label"
+								>Mô tả kho hàng</label
+							>
+							<textarea
+								class="form-control"
+								id="description"
+								rows="3"
+								placeholder="Nhập mô tả kho hàng"
+							></textarea>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Tên kho hàng</label
+							>
+							<input
+								type="email"
+								class="form-control"
+								id="name"
+								placeholder="Nhập tên kho hàng"
+							/>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Địa chỉ</label
+							>
+							<input
+								type="email"
+								class="form-control"
+								id="address"
+								placeholder="Nhập địa chỉ kho hàng"
+							/>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Người sở hữu</label
+							>
+							<input
+								type="email"
+								class="form-control"
+								id="owner"
+								placeholder="Nhập người sở hữu"
+							/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link" data-bs-dismiss="modal">
+							Đóng
+						</button>
+						<button type="button" class="btn btn-primary">Cập nhật</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container mt-5">
 			<div
 				class="row"
@@ -42,7 +119,12 @@
 							<li class="list-group-item">Người sở hữu: T3H</li>
 						</ul>
 						<div class="card-body d-flex flex-column gap-2">
-							<button type="button" class="btn btn-light">
+							<button
+								type="button"
+								class="btn btn-light"
+								data-bs-toggle="modal"
+								data-bs-target="#staticBackdrop"
+							>
 								Sửa thông tin kho hàng
 							</button>
 							<button type="button" class="btn btn-secondary">
@@ -80,7 +162,7 @@
 								<td>Tivi</td>
 								<td>Đồ điện tử</td>
 								<td>2</td>
-                                <td>20.000</td>
+								<td>20.000</td>
 							</tr>
 						</tbody>
 					</table>
@@ -93,5 +175,6 @@
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 			crossorigin="anonymous"
 		></script>
+		<script src="scripts.js"></script>
 	</body>
 </html>
