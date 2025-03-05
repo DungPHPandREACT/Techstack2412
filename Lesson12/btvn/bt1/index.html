@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div>
+			<div style="display: flex; align-items: center">
+				<div>
+					<div style="display: flex; flex-direction: column">
+						<label>URL</label>
+						<input placeholder="Nhập URL ảnh" id="url" type="text" />
+					</div>
+					<div style="display: flex; flex-direction: column">
+						<label>Chiều rộng (px)</label>
+						<input
+							placeholder="Nhập chiều rộng của ảnh"
+							id="width"
+							type="text"
+						/>
+					</div>
+					<div style="display: flex; flex-direction: column">
+						<label>Chiều cao (px)</label>
+						<input
+							placeholder="Nhập chiều cao của ảnh"
+							id="height"
+							type="text"
+						/>
+					</div>
+					<div style="display: flex; flex-direction: column">
+						<label>Bo góc (px)</label>
+						<input placeholder="Nhập bo góc cho ảnh" id="radius" type="text" />
+					</div>
+					<div style="display: flex; flex-direction: column">
+						<label>Alt</label>
+						<input
+							placeholder="Nhập nội dung thay thế cho ảnh"
+							id="alt"
+							type="text"
+						/>
+					</div>
+				</div>
+				<div style="margin-left: 100px">
+					<img
+						id="image"
+						src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045-2.jpg"
+						width="100px"
+						height="100px"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<script src="scripts.js"></script>
+	</body>
+</html>
