@@ -18,6 +18,7 @@
 		</style>
 	</head>
 	<body>
+		<!-- Modal sửa thông tin kho hàng -->
 		<div
 			class="modal fade"
 			id="staticBackdrop"
@@ -113,6 +114,94 @@
 				</div>
 			</div>
 		</div>
+		<!-- Modal thêm sản phẩm -->
+		<div
+			class="modal fade"
+			id="modal_create_item"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="staticBackdropLabel">
+							Thêm sản phẩm
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Tên sản phẩm <span style="color: red">*</span></label
+							>
+							<input
+								type="text"
+								class="form-control"
+								id="input_name_item"
+								placeholder="Nhập tên sản phẩm"
+							/>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Danh mục sản phẩm <span style="color: red">*</span></label
+							>
+							<select
+								class="form-select form-select-md mb-3"
+								aria-label="Large select example"
+                                id="input_category_item"
+							>
+								<option selected>Chọn danh mục</option>
+								<option value="1">Đồ nội thất</option>
+								<option value="2">Đồ gia dụng</option>
+								<option value="3">Đồ trang trí</option>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Số lượng <span style="color: red">*</span></label
+							>
+							<input
+								type="number"
+								class="form-control"
+								id="input_quantity_item"
+								placeholder="Nhập số lượng sản phẩm"
+							/>
+						</div>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label"
+								>Giá tiền <span style="color: red">*</span></label
+							>
+							<input
+								type="number"
+								class="form-control"
+								id="input_price_item"
+								placeholder="Nhập giá tiền sản phẩm"
+							/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link" data-bs-dismiss="modal">
+							Đóng
+						</button>
+						<button
+							id="btn_create_item"
+							type="button"
+							class="btn btn-primary"
+						>
+							Thêm mới
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container mt-5">
 			<div
 				class="row"
@@ -148,7 +237,12 @@
 							>
 								Sửa thông tin kho hàng
 							</button>
-							<button type="button" class="btn btn-secondary">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-toggle="modal"
+								data-bs-target="#modal_create_item"
+							>
 								Thêm sản phẩm
 							</button>
 						</div>

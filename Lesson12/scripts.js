@@ -45,13 +45,23 @@ const inputOwnerStorage = document.getElementById('input_owner_storage');
 const inputDescriptionStorage = document.getElementById(
 	'input_description_storage'
 );
+// Các form input trong modal thêm sản phẩm
+const inputNameItem = document.getElementById('input_name_item');
+const inputCategoryItem = document.getElementById('input_category_item');
+const inputQuantityItem = document.getElementById('input_quantity_item');
+const inputPriceItem = document.getElementById('input_price_item');
 
 // Các button
 // Button cập nhật thông tin kho hàng
 const btnUpdateStorage = document.getElementById('btn_update_storage');
+// Button thêm mới sản phẩm
+const btnCreateItem = document.getElementById('btn_create_item');
 
 // Bootstrap
 const myModal = new bootstrap.Modal('#staticBackdrop', {
+	keyboard: false,
+});
+const modalItem = new bootstrap.Modal('#modal_create_item', {
 	keyboard: false,
 });
 
@@ -121,6 +131,31 @@ function printItems() {
 printItems();
 
 // Tạo mặt hàng trong kho → Yêu cầu nhập mã mặt hàng, tên, loại, giá cả. In ra thông tin các mặt hàng đang có trong kho. Nếu mã mặt hàng đã tồn tại → yêu cầu nhập lại.
+btnCreateItem.onclick = function () {
+	const nameItem = inputNameItem.value;
+	const categoryItem = inputCategoryItem.value;
+	const quantityItem = inputQuantityItem.value;
+	const priceItem = inputPriceItem.value;
+
+	const newItem = {
+		name: nameItem,
+		category: categoryItem,
+		quantity: quantityItem,
+		price: priceItem,
+	};
+
+	storage.items.push(newItem);
+	printItems();
+
+	// clear input
+	inputNameItem.value = '';
+	inputCategoryItem.value = '';
+	inputQuantityItem.value = '';
+	inputPriceItem.value = '';
+
+	// đóng modal
+	modalItem.hide();
+};
 
 // Tìm kiếm mặt hàng = 3 → Yêu cầu nhập từ khóa tìm kiếm. In ra thông tin các mặt hàng có tên chứa từ khóa tìm kiếm.  Nếu không có từ khóa tìm kiếm → in ra toàn bộ mặt hàng.
 // Ý nghĩa: Xóa mặt hàng = 4 → Yêu cầu nhập mã mặt hàng. Xóa mặt hàng có mã tương ứng. Nếu không tìm thấy mã mặt hàng cần xóa → kết thúc.
