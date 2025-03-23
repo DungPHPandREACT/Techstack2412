@@ -129,6 +129,10 @@ function printItems(items) {
 			<td>${CATEGORIES[item.category]}</td>
 			<td>${item.quantity}</td>
 			<td>${item.price}</td>
+			<td>
+				<button class="btn btn-success">Chỉnh sửa</button>
+				<button class="btn btn-danger" onclick="deleteItem(${item.id})">Xóa</button>
+			</td>
 		</tr>
 		`;
   }
@@ -198,7 +202,27 @@ btnSearchProduct.onclick = function(){
 	printItems(results)
 }
 
-
-
-
 // Ý nghĩa: Xóa mặt hàng = 4 → Yêu cầu nhập mã mặt hàng. Xóa mặt hàng có mã tương ứng. Nếu không tìm thấy mã mặt hàng cần xóa → kết thúc.
+function findIndexById(id){
+	for(let i = 0; i < storage.items.length; i++){
+		if(storage.items[i].id === id){
+			return i;
+		}
+	}
+
+	return -1;
+}
+// Bước 1: Gán được sự kiện onclick cho button Xóa
+function deleteItem(id){
+	// Bước 2: Lấy được chính xác cái id của sản phẩm muốn xóa
+	// Bước 3: Dựa vào id để tìm index (vị trí) của sản phẩm đó trong mảng
+	let index = findIndexById(id);
+	// Bước 4: Xóa sản phẩm đấy khỏi mảng
+	storage.items.splice(index, 1);
+	// Bước 5: Gọi lại hàm printItems để in ra danh sách sản phẩm mới nhất
+	printItems();
+	// Bước 6: Cập nhật dữ liệu vào trong local storage
+	const storageSaved = JSON.stringify(storage); // => chuyển sang định dạng json
+    localStorage.setItem("storage", storageSaved);
+}
+
