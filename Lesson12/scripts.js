@@ -54,6 +54,8 @@ const btnCloseModalUpdateStorage = document.getElementById(
 );
 // Button thêm mới sản phẩm
 const btnCreateItem = document.getElementById("btn_create_item");
+// Button cập nhật sản phẩm (trong modal);
+const btnUpdateItem = document.getElementById("btn_update_item");
 // Button tìm kiếm sản phẩm
 const btnSearchProduct = document.getElementById("btn-search-product")
 
@@ -130,7 +132,7 @@ function printItems(items) {
 			<td>${item.quantity}</td>
 			<td>${item.price}</td>
 			<td>
-				<button class="btn btn-success">Chỉnh sửa</button>
+				<button class="btn btn-success" onclick="updateItem(${item.id})">Chỉnh sửa</button>
 				<button class="btn btn-danger" onclick="deleteItem(${item.id})">Xóa</button>
 			</td>
 		</tr>
@@ -146,6 +148,14 @@ function clearErrors() {
   errorAddressStorage.innerHTML = "";
   errorNameStorage.innerHTML = "";
   errorOwnerStorage.innerHTML = "";
+}
+
+// Function clear inputs trong form modal
+function clearInputs(){
+	inputNameItem.value = "";
+	inputCategoryItem.value = "";
+	inputQuantityItem.value = "";
+	inputPriceItem.value = "";
 }
 
 // Tạo mặt hàng trong kho → Yêu cầu nhập mã mặt hàng, tên, loại, giá cả. In ra thông tin các mặt hàng đang có trong kho. Nếu mã mặt hàng đã tồn tại → yêu cầu nhập lại.
@@ -170,10 +180,7 @@ btnCreateItem.onclick = function () {
   localStorage.setItem("storage", storageSaved);
 
   // clear input
-  inputNameItem.value = "";
-  inputCategoryItem.value = "";
-  inputQuantityItem.value = "";
-  inputPriceItem.value = "";
+  clearInputs();
 
   // đóng modal
   modalItem.hide();
@@ -226,3 +233,57 @@ function deleteItem(id){
     localStorage.setItem("storage", storageSaved);
 }
 
+// Chỉnh sửa
+let indexItemUpdate = -1;
+// Hành động 1: Lấy thông tin và show lên modal
+// Bước 1: Gán được sự kiện onclick cho button Chỉnh sửa
+function updateItem(id){
+	// Bước 2: Lấy được chính xác cái id của sản phẩm muốn xóa
+	// Bước 3: Dựa vào id để tìm index (vị trí) của sản phẩm đó trong mảng
+	indexItemUpdate = findIndexById(id);
+	// Bước 4: Lấy thông tin sản phẩm, bật modal và in fill thông tin sản phẩm vào form trong modal
+	inputNameItem.value = storage.items[indexItemUpdate].name;
+	inputCategoryItem.value = storage.items[indexItemUpdate].category;
+	inputQuantityItem.value = storage.items[indexItemUpdate].quantity;
+	inputPriceItem.value = storage.items[indexItemUpdate].price;
+	modalItem.show();
+	// Ẩn button "Thêm mới" và 
+	btnCreateItem.style.display = "none"
+	// Hiện button "Cập nhật"
+	btnUpdateItem.style.display = "inline"
+	// Sửa title
+	document.getElementById("title-modal-item").innerText = "Chỉnh sửa sản phẩm"
+}
+
+// Hành động 2: Khi người dùng nhấn button cập nhật
+// Bước 1: Gán sự kiện cho button Cập nhật trong modal
+btnUpdateItem.onclick = function(){
+	// Bước 2: Lấy thông tin người dùng vừa cập nhật
+	const nameItemUpdate = inputNameItem.value;
+	const categoryItemUpdate = inputCategoryItem.value;
+	const quantityItemUpdate = inputQuantityItem.value;
+	const priceItemUpdate = inputPriceItem.value;
+	
+	storage.items[indexItemUpdate].name = nameItemUpdate
+	storage.items[indexItemUpdate].category = categoryItemUpdate
+	storage.items[indexItemUpdate].quantity = quantityItemUpdate
+	storage.items[indexItemUpdate].price = priceItemUpdate
+	// Bước 3: Lưu thông tin mới nhất vào local storage
+	const storageSaved = JSON.stringify(storage); // => chuyển sang định dạng json
+    localStorage.setItem("storage", storageSaved);
+
+	// Bước 4: Gọi lại hàm printItems để in ra dữ liệu mới nhất
+	printItems();
+
+	// Bước 5: Ẩn modal và khôi phục lại trạng thái modal
+	modalItem.hide();
+	// Ẩn button "Cập nhật" và 
+	btnUpdateItem.style.display = "none"
+	// Hiện button "Thêm mới"
+	btnCreateItem.style.display = "inline"
+	// Sửa title
+	document.getElementById("title-modal-item").innerText = "Chỉnh sửa sản phẩm"
+
+	// Bước 6: clear input trong forms
+	clearInputs();
+}
