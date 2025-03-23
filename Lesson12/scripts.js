@@ -2,7 +2,7 @@
 // -Cửa hàng gồm các thông tin: tên kho hàng, địa chỉ, người sở hữu, các mặt hàng trong kho.
 // -Mỗi mặt hàng gồm: mã mặt hàng, tên, loại mặt hàng, giá cả.
 
-const storage = {
+const initStorage = {
 	name: 'Fake Storage',
 	address: 'HN',
 	owner: 'Dung Tien',
@@ -31,6 +31,11 @@ const storage = {
 		},
 	],
 };
+
+let storage = initStorage;
+if (localStorage.getItem('storage')) {
+	storage = JSON.parse(localStorage.getItem('storage'));
+}
 
 // Thông tin kho hàng
 const nameStorage = document.getElementById('name_storage');
@@ -106,6 +111,10 @@ btnUpdateStorage.onclick = function () {
 		storage.owner = newOwnerStorage;
 		storage.description = newDescriptionStorage;
 
+		// Sau khi sửa thông tin kho hàng => cập nhật vào local storage
+		const storageSaved = JSON.stringify(storage); // => chuyển sang định dạng json
+		localStorage.setItem('storage', storageSaved);
+
 		printInformationStorage();
 		myModal.hide();
 	}
@@ -146,6 +155,9 @@ btnCreateItem.onclick = function () {
 
 	storage.items.push(newItem);
 	printItems();
+
+	const storageSaved = JSON.stringify(storage); // => chuyển sang định dạng json
+	localStorage.setItem('storage', storageSaved);
 
 	// clear input
 	inputNameItem.value = '';
